@@ -14,7 +14,13 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    if user_signed_in?
+      @post = Post.new
+      @node = Node.new
+      @user = current_user
+    else
+      redirect_to  new_user_session_path
+    end
   end
 
   # GET /posts/1/edit
@@ -69,6 +75,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:user_id)
+      params.require(:post).permit(:title, :user_id)
     end
 end
