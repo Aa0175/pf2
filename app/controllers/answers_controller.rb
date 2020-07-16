@@ -4,7 +4,9 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.all
+    question_id = flash[:question_id]
+    flash[:question_id] = question_id
+    @answers = Answer.where(question_id: question_id)
   end
 
   # GET /answers/1
