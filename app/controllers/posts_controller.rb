@@ -16,8 +16,6 @@ class PostsController < ApplicationController
   def new
     if user_signed_in?
       @post = Post.new
-      @node = Node.new
-      @user = current_user
     else
       redirect_to  new_user_session_path
     end
@@ -31,10 +29,12 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        flash[:post_id] = @post.id
+        format.html { redirect_to new_question_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }

@@ -11,7 +11,7 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
+      <th>一覧</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.user_id %></td>
+        <td><%= post.user_id %>/<%= post.title %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>

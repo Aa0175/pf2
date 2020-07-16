@@ -22,7 +22,7 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+<%= button_to 'ゲストユーザーでログイン', {controller: 'users/sessions', action: 'new_guest'}, method: :post %>
 
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
 
 <%= render "devise/shared/links" %>

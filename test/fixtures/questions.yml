@@ -2,12 +2,10 @@
 
 one:
   post_id: 1
-  node_id: MyString
-  integer: MyString
+  answer_id: 1
   content: MyString
 
 two:
   post_id: 1
-  node_id: MyString
-  integer: MyString
+  answer_id: 1
   content: MyString
