@@ -16,21 +16,18 @@
     <%= form.number_field :question_id, value: @answer.question_id %>
   </div>
 
-  <% if @answers != nil %>
-    <tr>
-      <% @answers.each do |answer| %>
-      <td>選択肢<%= answer.id %>:<%= answer.content %></td>
-      <% end %>
-    </tr>
-  <% end %>
-
   <div class="field">
     <%= form.label :answer_id %>
     <%= form.number_field :answer_id %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, value: "選択肢を追加" %>
+    <% if @answers.any? %>
+        <% @answers.each do |answer| %>
+        <p><%= answer.content %></p>
+        <% end %>
+    <% end %>
     <%= form.text_field :content %>
   </div>
 

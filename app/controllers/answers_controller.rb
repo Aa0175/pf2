@@ -15,7 +15,16 @@ class AnswersController < ApplicationController
   # GET /answers/new
   def new
     @answer = Answer.new
-    @answer.question_id = flash[:question_id] unless flash[:question_id].nil?
+    if flash[:question_id].present?
+      @answer.question_id = flash[:question_id]
+      flash[:question_id] = @answer.question_id
+    elsif  flash[:answer_id].present?
+      @answer.answer_id = flash[:answer_id]
+      flash[:answer_id] = @answer.qanswer_id
+    else
+      redirect_to new_post_path
+    end
+    @answers = Answer.where(question_id: @answer.question_id)
   end
 
   # GET /answers/1/edit
@@ -30,8 +39,8 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         if params[:commit] == "他の選択肢を追加"
-          @answers = Answer.where(question_id: @answer.question_id)
-          format.html { redirect_to new_answer_path(@answers), notice: 'Answer was successfully created.' }
+          flash[:question_id] =   @answer.question_id
+          format.html { redirect_to new_answer_path(@answer), notice: 'Answer was successfully created.' }
         else
           format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
           format.json { render :show, status: :created, location: @answer }
