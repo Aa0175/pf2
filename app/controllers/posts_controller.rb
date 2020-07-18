@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    a = params[:post_id]
     flash[:post_id] = @post.id
   end
 

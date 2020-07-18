@@ -4,14 +4,16 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    question_id = flash[:question_id]
-    flash[:question_id] = question_id
+    question_id = params[:question_id]
+    params[:question_id] = question_id
     @answers = Answer.where(question_id: question_id)
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
+    question_id = flash[:question_id]
+    flash[:question_id] = question_id
   end
 
   # GET /answers/new

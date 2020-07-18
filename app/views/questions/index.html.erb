@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>id</th>
       <th>Post</th>
       <th>Answer</th>
       <th>Content</th>
@@ -15,10 +16,11 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
+        <td><%= question.id %></td>
         <td><%= question.post_id %></td>
         <td><%= question.answer_id %></td>
         <td><%= question.content %></td>
-        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to '選択肢', answers_path(question_id: question.id) %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -28,4 +30,5 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'New Question', new_question_path %>|
+<%= link_to 'Back', posts_path %>

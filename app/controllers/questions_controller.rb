@@ -4,15 +4,17 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    post_id = flash[:post_id]
-    flash[:post_id] = post_id
+    post_id = params[:post_id]
+    params[:post_id] = post_id
     @questions = Question.where(post_id: post_id)
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-
+    post_id = flash[:post_id]
+    flash[:post_id] = post_id
+    flash[:question_id] = @question.id
   end
 
   # GET /questions/new
