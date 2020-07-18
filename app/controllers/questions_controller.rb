@@ -4,17 +4,13 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    post_id = params[:post_id]
-    params[:post_id] = post_id
-    @questions = Question.where(post_id: post_id)
+    $post_id = params[:post_id]
+    @questions = Question.where(post_id: $post_id)
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-    post_id = flash[:post_id]
-    flash[:post_id] = post_id
-    flash[:question_id] = @question.id
   end
 
   # GET /questions/new
@@ -30,12 +26,12 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-    @question.post_id = flash[:post_id]
+    @question.post_id = $post_id
 
     respond_to do |format|
       if @question.save
-        flash[:question_id] = @question.id
-        format.html { redirect_to new_answer_path, notice: 'Question was successfully created.' }#元々はredirect_to @question
+        $question_id = @question.id
+        format.html { redirect_to new_answer_path($question_id), notice: 'Question was successfully created.' }#元々はredirect_to @question
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }

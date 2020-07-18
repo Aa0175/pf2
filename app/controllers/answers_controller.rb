@@ -4,29 +4,24 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    question_id = params[:question_id]
-    params[:question_id] = question_id
-    @answers = Answer.where(question_id: question_id)
+    $question_id = params[:question_id] if params[:question_id].present?
+    @answers = Answer.where(question_id: $question_id)
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
-    question_id = flash[:question_id]
-    flash[:question_id] = question_id
   end
 
   # GET /answers/new
   def new
     @answer = Answer.new
-    if flash[:question_id].present?
-      @answer.question_id = flash[:question_id]
-      flash[:question_id] = @answer.question_id
-    elsif  flash[:answer_id].present?
-      @answer.answer_id = flash[:answer_id]
-      flash[:answer_id] = @answer.qanswer_id
+    if $question_id.present?
+      @answer.question_id = $question_id
+    # elsif $answer_id.present?
+    #   @answer.answer_id = $answer_id
     else
-      redirect_to new_post_path
+      redirect_to new_post_path, notice: 'エラーが発生しました。もう一度最初からご入力ください。'
     end
     @answers = Answer.where(question_id: @answer.question_id)
   end
@@ -43,10 +38,9 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         if params[:commit] == "他の選択肢を追加"
-          flash[:question_id] =   @answer.question_id
-          format.html { redirect_to new_answer_path(@answer), notice: 'Answer was successfully created.' }
+          format.html { redirect_to new_answer_path, notice: '回答が追加されました。' }
         else
-          format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+          format.html { redirect_to answers_path($question_id), notice: 'Answer was successfully created.' }
           format.json { render :show, status: :created, location: @answer }
         end
       else

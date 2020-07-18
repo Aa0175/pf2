@@ -6,9 +6,8 @@
   <thead>
     <tr>
       <th>id</th>
-      <th>Post</th>
       <th>Answer</th>
-      <th>Content</th>
+      <th>質問</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,12 +16,11 @@
     <% @questions.each do |question| %>
       <tr>
         <td><%= question.id %></td>
-        <td><%= question.post_id %></td>
         <td><%= question.answer_id %></td>
         <td><%= question.content %></td>
         <td><%= link_to '選択肢', answers_path(question_id: question.id) %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '編集', edit_question_path(question) %></td>
+        <td><%= link_to '削除', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,5 +28,5 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>|
-<%= link_to 'Back', posts_path %>
+<%= link_to '質問を追加する', new_question_path %>|
+<%= link_to '戻る', posts_path %>
