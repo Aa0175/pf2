@@ -30,8 +30,8 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        # $question_id = @question.id
-        format.html { redirect_to new_answer_path, notice: '質問が作成されました。' }#元々はredirect_to @question
+        $question_id = @question.id
+        format.html { redirect_to new_answer_path($question_id), notice: '質問が作成されました。' }#元々はredirect_to @question
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -72,6 +72,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:post_id, :answer_id, :content, { question_id: []})
+      params.require(:question).permit(:post_id, :answer_id, :content)
     end
 end
