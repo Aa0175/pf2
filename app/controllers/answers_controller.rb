@@ -16,14 +16,14 @@ class AnswersController < ApplicationController
   # GET /answers/new
   def new
     @answer = Answer.new
-    if $question_id.present?
-      @answer.question_id = $question_id
-    # elsif $answer_id.present?
-    #   @answer.answer_id = $answer_id
-    else
-      redirect_to new_post_path, notice: 'エラーが発生しました。もう一度最初からご入力ください。'
-    end
-    @answers = Answer.where(question_id: @answer.question_id)
+    # if $question_id.present?
+    #   @answer.question_id = $question_id
+    # # elsif $answer_id.present?
+    # #   @answer.answer_id = $answer_id
+    # else
+    #   redirect_to new_post_path, notice: 'エラーが発生しました。もう一度最初からご入力ください。'
+    # # end
+    # @answers = Answer.where(question_id: @answer.question_id)
   end
 
   # GET /answers/1/edit
@@ -40,7 +40,7 @@ class AnswersController < ApplicationController
         if params[:commit] == "他の選択肢を追加"
           format.html { redirect_to new_answer_path, notice: '回答が追加されました。' }
         else
-          format.html { redirect_to answers_path($question_id), notice: 'Answer was successfully created.' }
+          format.html { redirect_to answers_path, notice: 'Answer was successfully created.' }
           format.json { render :show, status: :created, location: @answer }
         end
       else
@@ -82,6 +82,6 @@ class AnswersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def answer_params
-      params.require(:answer).permit(:question_id, :answer_id, :content)
+      params.require(:answer).permit(:question_id, :answer_id, :content, { answer_ids: [] })
     end
 end

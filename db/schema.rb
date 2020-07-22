@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_085351) do
+ActiveRecord::Schema.define(version: 2020_07_21_085220) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "answer_id"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "aq_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_aq_relationships_on_answer_id"
+    t.index ["question_id"], name: "index_aq_relationships_on_question_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -27,10 +34,18 @@ ActiveRecord::Schema.define(version: 2020_07_10_085351) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "qa_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "answer_id", null: false
+    t.bigint "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_qa_relationships_on_answer_id"
+    t.index ["question_id"], name: "index_qa_relationships_on_question_id"
+  end
+
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "answer_id"
     t.string "content"
+    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -48,4 +63,8 @@ ActiveRecord::Schema.define(version: 2020_07_10_085351) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "aq_relationships", "answers"
+  add_foreign_key "aq_relationships", "questions"
+  add_foreign_key "qa_relationships", "answers"
+  add_foreign_key "qa_relationships", "questions"
 end

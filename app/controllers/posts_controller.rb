@@ -10,8 +10,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    a = params[:post_id]
-    flash[:post_id] = @post.id
   end
 
   # GET /posts/new
@@ -35,8 +33,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        $post = @post.id
-        format.html { redirect_to new_question_path($post), notice: 'Post was successfully created.' }
+        $post_id = @post.id
+        format.html { redirect_to new_question_path($post_id), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
