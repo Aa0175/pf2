@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
   validates :content, presence: true, length: { maximum: 255}
-  #必ずanswerかquestion_idがあるように設定したい
+  #必ずanswerかquestion_idがあるように設定
   validates :question_or_answer, presence: true
 
   private

@@ -38,9 +38,9 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         if params[:commit] == "他の選択肢を追加"
-          format.html { redirect_to new_answer_path, notice: '回答が追加されました。' }
+          format.html { redirect_to new_answer_path(@answer), notice: '回答が追加されました。' }
         else
-          format.html { redirect_to answers_path($question_id), notice: 'Answer was successfully created.' }
+          format.html { redirect_to answers_path, notice: 'Answer was successfully created.' }
           format.json { render :show, status: :created, location: @answer }
         end
       else
