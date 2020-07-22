@@ -1,0 +1,41 @@
+<%= form_with(model: node, local: true, url: {controller: 'nodes', action: 'create_a'}) do |form| %>
+  <% if node.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(node.errors.count, "error") %> prohibited this node from being saved:</h2>
+
+      <ul>
+        <% node.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :post_id %>
+    <%= form.number_field :post_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_id %>
+    <%= form.number_field :parent_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content, value: "選択肢を追加" %>
+    <% if @nodes.present? %>
+        <% @nodes.each do |node| %>
+        <p><%= node.content %></p>
+        <% end %>
+    <% end %>
+    <%= form.text_field :content %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit '他の選択肢を追加' %>
+    <%= form.submit '他の質問を追加' %>
+    <%= form.submit '投稿する' %>
+  </div>
+<% end %>
