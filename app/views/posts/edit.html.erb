@@ -1,7 +1,6 @@
 <h1>Editing Post</h1>
 
 <%= render 'form', post: @post %>
-<%= link_to '質問を追加する', new_question_path %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to '質問を追加する', new_q_nodes_path %>
+<%= link_to '回答を追加する', new_a_nodes_path %>
+<%= link_to '投稿一覧へ', posts_path %>

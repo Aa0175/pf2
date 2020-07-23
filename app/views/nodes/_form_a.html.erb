@@ -23,12 +23,14 @@
 
   <div class="field">
     <%= form.label :content, value: "選択肢を追加" %>
+    <tr>
     <% if @nodes.present? %>
         <% @nodes.each do |node| %>
-        <p><%= node.content %></p>
+          <p><tb><%= node.content %></tb><tb><%= link_to '削除', node, method: :delete %></tb></p>
         <% end %>
     <% end %>
     <%= form.text_field :content %>
+    </tr>
   </div>
 
 

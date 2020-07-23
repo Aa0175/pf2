@@ -34,6 +34,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         $post_id = @post.id
+        flash[:first_time] = true
         format.html { redirect_to new_q_nodes_path($post_id), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
