@@ -1,0 +1,9 @@
+<h2>title:<%= @post_title %></h2><br>
+
+<% if @node_a.present? %>
+  <h2>1つ前の回答:<%= @node_a.content %></h2>
+<% end %>
+
+<h1>新しい質問の追加</h1>
+
+<%= render 'form_q', node: @node %>

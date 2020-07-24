@@ -25,7 +25,7 @@
         <td>No:<%= post.id %></td>
         <td><%= post.title %></td>
         <td>投稿日:<%= post.created_at %></td>
-        <td><%= link_to '質問一覧へ', questions_path(post_id: post.id) %></td>
+        <td><%= link_to '質問一覧へ', nodes_path(post_id: post.id) %></td>
         <td><%= link_to '編集', edit_post_path(post) %></td>
         <td><%= link_to '削除', post, method: :delete, data: { confirm: '削除すると復元できません!本当に削除しますか?' } %></td>
       </tr>
