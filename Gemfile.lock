@@ -99,6 +99,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.9.0)
     ffi (1.13.1)
+    foreman (0.87.1)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -269,6 +270,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   closure_tree
   devise
+  foreman
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
