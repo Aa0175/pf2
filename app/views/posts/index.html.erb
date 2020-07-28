@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-<%= javascript_pack_tag 'hello_vue' %>
-<%= stylesheet_pack_tag 'hello_vue' %>
 <%= link_to '新規投稿', new_post_path %>
 <% if user_signed_in? %>
   <%= link_to 'ユーザーページ',  user_path(current_user) %>
