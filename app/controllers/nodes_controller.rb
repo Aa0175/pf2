@@ -80,7 +80,7 @@ class NodesController < ApplicationController
         $parent_id = @node.parent_id
 
         $r_source = "a"
-        #new_q or new_a or post#showに飛ぶ
+        #new_q or new_a or post#showに飛ぶ★現在はnodes#index
         if params[:commit] == "他の選択肢を追加"
           format.html { redirect_to new_a_nodes_path, notice: 'Node was successfully created.' }
           format.json { render :show, status: :created, location: @node }
@@ -111,7 +111,6 @@ class NodesController < ApplicationController
   end
 
   # PATCH/PUT /nodes/1
-  # PATCH/PUT /nodes/1.json
   def update
     respond_to do |format|
       if @node.update(node_params)

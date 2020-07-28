@@ -22,6 +22,7 @@
   </div>
 
   <div class="field">
+    <tbody>
     <%= form.label :content, value: "選択肢を追加" %>
     <tr>
     <% if @nodes.present? %>
@@ -31,12 +32,15 @@
     <% end %>
     <%= form.text_field :content %>
     </tr>
+    </tbody>
   </div>
 
 
 
   <div class="actions">
+  <% if @nodes.nil? or @nodes.count < 3 %>
     <%= form.submit '他の選択肢を追加' %>
+  <% end %>
     <%= form.submit '他の質問を追加' %>
     <%= form.submit '投稿する' %>
   </div>

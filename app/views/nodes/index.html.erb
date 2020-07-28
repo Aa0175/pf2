@@ -18,6 +18,7 @@
         <td><%= node.post_id %></td>
         <td><%= node.content %></td>
         <td><%= node.parent_id %></td>
+        
         <td><%= link_to 'Show', node %></td>
         <td><%= link_to 'Edit', edit_node_path(node) %></td>
         <td><%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
