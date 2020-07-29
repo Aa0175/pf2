@@ -1,0 +1,83 @@
+[33mcommit de893673b3d8e6543dd16ccafe189517d767d21a[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/tree_structure[m[33m, [m[1;31morigin/feature/tree_structure[m[33m)[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Fri Jul 24 06:31:13 2020 +0000
+
+    [fix]同親ノード下のnode_aの最大投稿数を4に修正　#43
+
+[33mcommit 97fdd1f3dee3a8735eaec03818988da1ddd97db0[m[33m ([m[1;31morigin/TreeStructure[m[33m)[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 23 13:42:56 2020 +0000
+
+    [add+fix]nodesコントローラーの修正 #72
+
+[33mcommit 82291e827e833538cfcde932e5cdb0f102619b17[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Wed Jul 22 14:14:21 2020 +0000
+
+    本日の作業終了
+
+[33mcommit 4d9e7beccc03f4659da48bcb4e9e515378c1c8f3[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Wed Jul 22 05:15:24 2020 +0000
+
+    作業中
+
+[33mcommit c29b68ce5e99bf0c6eb2b4fcb4096f994c7678e5[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Wed Jul 22 04:58:49 2020 +0000
+
+    Initialize repository
+
+[33mcommit 86b7f965bca07518f68e102056707ecd22d86eb3[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Sat Jul 18 14:27:47 2020 +0000
+
+    [add]投稿済みpostに追加で新規投稿する機能追加 #42
+
+[33mcommit 3e6009d69b3036d4bccb12d7ab76cbf69109b17b[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Sat Jul 18 10:05:28 2020 +0000
+
+    各view,model,controllerの修正その2 #22
+
+[33mcommit 96e00670a13970a011c5220501fa3c2b93d8cbc8[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 16 13:22:43 2020 +0000
+
+    ビュー、モデル、コントローラーの修正 その1 #18
+
+[33mcommit 2c8d5f4e6198c744f5651c3c0abea22545c96c62[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 16 06:10:42 2020 +0000
+
+    answers#new 連続投稿機能追加 #19
+
+[33mcommit 6ea8e6203855e27fd537fd4a665d9f1db78b49ba[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 16 02:45:15 2020 +0000
+
+    ゲストユーザーログイン機能修正 #21
+
+[33mcommit 805967a7aeb772cad540c47dc669160e4f680201[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 9 05:29:23 2020 +0000
+
+    ログイン中のユーザーのみ新規投稿可能になるよう修正 #8
+
+[33mcommit cd3db76a680aaddbd7d669594f4c60785ca9b7b8[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 9 04:03:31 2020 +0000
+
+    deviseメッセージの日本語化 #7
+
+[33mcommit 0bc7a1b588c1b98de462c052383fb5013f515bfc[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Thu Jul 9 03:37:50 2020 +0000
+
+    簡単ログイン機能追加 + ログアウト時エラー修正 #4,#5
+
+[33mcommit bd04f73764babc7230f5dcf62fe857db3ee17884[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: vagrant <vagrant@vagrant.vm>
+Date:   Tue Jul 7 01:56:35 2020 +0000
+
+    Initialize repository
