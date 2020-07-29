@@ -90,13 +90,14 @@ class NodesController < ApplicationController
           format.html { redirect_to nodes_path(@node.post_id), notice: 'Node was successfully created.' }
         end
       else
+        @post_title = $post_title
+        @node_q = $node_q
+        @nodes = Node.where(parent_id: $parent_id)
         if params[:commit] == "他の選択肢を追加"
-          @post_title = $post_title
-          @node_q = $node_q
-          @nodes = Node.where(parent_id: $parent_id)
           format.html { render new_a_nodes_path }
           format.json { render json: @node.errors, status: :unprocessable_entity }
         elsif  params[:commit] == "他の質問を追加"
+          format.html { render new_a_nodes_path } if @nodes.blank?
           format.html { redirect_to new_q_nodes_path, notice: 'Node was successfully created.' }
         else
           format.html { redirect_to nodes_path(@node.post_id), notice: 'Node was successfully created.' }
