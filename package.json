@@ -6,6 +6,8 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+
+
     "axios": "^0.19.2",
     "lodash": "4.17.19",
     "turbolinks": "^5.2.0",
@@ -13,6 +15,8 @@
     "vue-loader": "^15.9.3",
     "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.11"
+    "vue-tree-chart": "^1.2.9"
+
   },
   "version": "0.1.0",
   "devDependencies": {

@@ -7311,6 +7311,13 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+  
+vue-tree-chart@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/vue-tree-chart/-/vue-tree-chart-1.2.9.tgz#fc513415d74aa639ca0af8912e92a5dcc9e73247"
+  integrity sha512-agPPR0cJwvQEH0iVN25zmQydGZSiYgqIxHqdzDOl3UuAG4iQoHbnBpoo1sSU+IvlUEEI+vuCZ3hDXad/pfQcew==
+  dependencies:
+    vue "^2.6.11"
 
 vue@^2.6.11:
   version "2.6.11"
