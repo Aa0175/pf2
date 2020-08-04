@@ -8,8 +8,8 @@ Rails.application.routes.draw do
                                       sessions: 'users/sessions',
                                       passwords: 'users/passwords'}
 
-  # root 'posts#index'
-  root to: 'home#index'
+  root 'posts#index'
+  # root to: 'home#index'
 
   get "users/:id", :to => "users#show", as: "user"
   get "users/", :to => "users#index", as: "users"
