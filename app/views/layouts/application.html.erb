@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,5 +13,8 @@
   <body>
     <%= render template: "layouts/_header" %>
     <%= yield %>
+
+    <%= javascript_pack_tag 'main' %>
+    <%= stylesheet_pack_tag 'main' %>
   </body>
 </html>

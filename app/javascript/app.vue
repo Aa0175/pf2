@@ -28,7 +28,6 @@ const router = new VueRouter({
       name: 'NodeEditPage',
       component: NodeEditPage   },
     { path: '/posts/:id(\\d+)',
-      name: 'PostDetailPage',
       component: PostDetailPage   }
   ]
 })
