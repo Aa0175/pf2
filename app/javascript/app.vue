@@ -12,6 +12,7 @@ import NodeIndexPage from 'NodeIndexPage.vue'
 import NodeDetailPage from 'NodeDetailPage.vue'
 import NodeNewPage from 'NodeNewPage.vue'
 import NodeEditPage from 'NodeEditPage.vue'
+import PostDetailPage from "PostDetailPage.vue"
 
 const router = new VueRouter({
   routes: [
@@ -25,7 +26,9 @@ const router = new VueRouter({
       component: NodeNewPage     },
     { path: '/nodes/:id(\\d+)/edit',
       name: 'NodeEditPage',
-      component: NodeEditPage   }
+      component: NodeEditPage   },
+    { path: '/posts/:id(\\d+)',
+      component: PostDetailPage   }
   ]
 })
 

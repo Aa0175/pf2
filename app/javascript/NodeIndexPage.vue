@@ -33,9 +33,7 @@
 
 <script>
 import axios from 'axios';
-
 import Modal from 'Modal.vue'
-
 export default {
   components: {
     Modal
@@ -52,7 +50,7 @@ export default {
     axios
       .get('/api/v1/nodes.json')
       .then(response => (this.nodes = response.data))
-      this.updateEmployees();
+      this.updateNodes();
   },
   methods: {
     deleteNode: function() {
@@ -60,7 +58,6 @@ export default {
         console.warn('deleteTarget should be grater than zero.');
         return;
       }
-
       axios
         .delete(`/api/v1/nodes/${this.deleteTarget}`)
         .then(response => {

@@ -10,6 +10,13 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    # post_id = params[:id]
+    # @node = Node.find_by(id: post_id, parent_id: nil)
+    # # todo(最初)[0] = root_node.id
+    # todo = [@node.id]
+    # $test_result = []
+    #
+    # recursive_dfs(todo)
   end
 
   # GET /posts/new
@@ -77,5 +84,22 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :user_id)
+    end
+
+    def recursive_dfs(todo)
+      @node = Node.find_by(id: todo)
+      $test_result.push(@node.content)
+      if @node.children.present?
+        children_todo = @node.children.ids
+      else
+        return
+      end
+
+      loop do
+        return if children_todo.empty?
+        c = children_todo[0]
+        recursive_dfs(c)
+        children_todo.shift
+      end
     end
 end
