@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+@import "semantic-ui";
+.ui.menu {
+  background: #20b2aa;
+  border-radius: 0;
+  .item{
+    color: #FFFFFF;
+  }
+}

@@ -1,17 +1,17 @@
-<header>
-  <nav>
-    <%= link_to root_path do %>
-      <%= image_tag 'logo.jpg' %>
+<div class="ui menu">
+  <div class="right menu">
+    <%= link_to '新規投稿', new_post_path, class: "item" %>
+    <% if user_signed_in? %>
+      <%= link_to 'マイページ',  user_path(current_user), class: "item" %>
+      <%= link_to 'ログアウト',  destroy_user_session_path, :method => :delete, class: "item" %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path, class: "item" %>
     <% end %>
-    <ul>
-        <li><%= link_to '新規投稿', new_post_path %></li>
-      <% if user_signed_in? %>
-        <li><%= link_to 'マイページ',  user_path(current_user) %></li>
-        <li><%= link_to 'ログアウト',  destroy_user_session_path, :method => :delete %></li>
-      <% else %>
-        <li><%= link_to '新規登録', new_user_registration_path %></li>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <% end %>
-    </ul>
-  </nav>
-</header>
+    <div class="item">
+      <div class="ui transparent icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
