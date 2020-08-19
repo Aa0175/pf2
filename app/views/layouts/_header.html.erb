@@ -1,17 +1,33 @@
 <div class="ui menu">
-  <div class="right menu">
-    <%= link_to '新規投稿', new_post_path, class: "item" %>
-    <% if user_signed_in? %>
-      <%= link_to 'マイページ',  user_path(current_user), class: "item" %>
-      <%= link_to 'ログアウト',  destroy_user_session_path, :method => :delete, class: "item" %>
-    <% else %>
-      <%= link_to 'ログイン', new_user_session_path, class: "item" %>
+  <div class="left menu">
+    <%= link_to posts_path do %>
+      <%= image_tag 'logo.png', class: "item", id: "menu_logo" %>
     <% end %>
+  </div>
+  <div class="right menu">
     <div class="item">
       <div class="ui transparent icon input">
         <input type="text" placeholder="Search...">
         <i class="search link icon"></i>
       </div>
     </div>
+    <a class="item" href="/posts">
+      <i class="fas fa-th"> 最新の投稿一覧</i>
+    </a>
+    <a class="item" href="/posts/new">
+      <i class="fas fa-plus"> 新規投稿</i>
+    </a>
+    <% if user_signed_in? %>
+      <a class="item" href="/users/<%= current_user.id %>">
+        <i class="far fa-user"> マイページ</i>
+      </a>
+      <a class="item" rel="nofollow" data-method="delete" href="/users/sign_out">
+        <i class="fas fa-sign-out-alt"> ログアウト</i>
+      </a>
+    <% else %>
+      <a class="item" href="/users/sign_in">
+        <i class="fas fa-sign-in-alt"> ログイン</i>
+      </a>
+    <% end %>
   </div>
 </div>

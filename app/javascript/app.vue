@@ -8,7 +8,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import NodeIndexPage from 'NodeIndexPage.vue'
+import PostIndexPage from 'PostIndexPage.vue'
 import NodeDetailPage from 'NodeDetailPage.vue'
 import NodeNewPage from 'NodeNewPage.vue'
 import NodeEditPage from 'NodeEditPage.vue'
@@ -17,7 +17,7 @@ import PostDetailPage from "PostDetailPage.vue"
 const router = new VueRouter({
   routes: [
     { path: '/',
-      component: NodeIndexPage  },
+      component: PostIndexPage  },
     { path: '/nodes/:id(\\d+)',// :id は数値のみに制限する
       name: 'NodeDetailPage',
       component: NodeDetailPage  },

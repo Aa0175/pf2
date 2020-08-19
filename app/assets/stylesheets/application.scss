@@ -15,10 +15,29 @@
  */
 
 @import "semantic-ui";
+#container {
+  margin: 5px;
+}
+
 .ui.menu {
+  height: 50px;
+  padding-left: 5px;
   background: #20b2aa;
   border-radius: 0;
   .item{
     color: #FFFFFF;
   }
+}
+
+#posts_segment p {
+    font-size: 2em;
+    text-align: center;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#menu_logo {
+  padding: 0px;
 }

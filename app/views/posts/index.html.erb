@@ -1,15 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
-<%= link_to '新規投稿', new_post_path %>
-<% if user_signed_in? %>
-  <%= link_to 'ユーザーページ',  user_path(current_user) %>
-  <%= link_to 'ログアウト',  destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to '新規登録', new_user_registration_path %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>
-
+<div id="container" class="ui stackable three column grid">
+  <% @posts.each do |post| %>
+  <div class="column">
+    <div id="posts_segment" class="ui segment">
+      <p>ユーザーと作成日時表示</p>
+      <p>画像予定</p>
+      <p><%= post.title %></p>
+      <p><%= link_to '質問に答える', nodes_path(post_id: post.id) %></p>
+      <p><%= link_to '回答を見る', post_path(id: post.id) %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
+<!-- <h1>Posts</h1> -->
 <!-- <table>
   <thead>
     <tr>
