@@ -29,10 +29,9 @@
   }
 }
 
-#posts_segment p {
+#post_title {
     font-size: 2em;
     text-align: center;
-    width: 90%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -40,4 +39,12 @@
 
 #menu_logo {
   padding: 0px;
+}
+
+.ui.segment {
+  padding: 13px;
+}
+
+.ui.segments:not(.horizontal) > .segment:first-child {
+  height: 40px;
 }
