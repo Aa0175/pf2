@@ -16,7 +16,7 @@
 
 @import "semantic-ui";
 #container {
-  margin: 5px;
+  margin: 10px;
 }
 
 .ui.menu {
@@ -41,6 +41,10 @@
   padding: 0px;
 }
 
+.ui.grid > .column:not(.row) {
+  padding: 20px;
+}
+
 .ui.segment {
   padding: 13px;
   text-align: center;
@@ -56,6 +60,8 @@
 .index_post_image {
   margin: auto;
   max-width: 100%;
+  max-height: 223.797px;    //後々削除
+  width: auto;              //後々削除
   height: auto;
-  align-items: center;
+  object-fit: cover;       //後々削除
 }

@@ -12,9 +12,9 @@
           <div class="right">投稿日時:<%= simple_time(post.updated_at) %></div>
         <% end %>
       </div>
-      <div class="ui segment">
+      <div class="ui segment second">
         <% if post.img?%>
-          <%= image_tag post.img.url %>
+          <%= image_tag post.img.url, class: "index_post_image" %>
         <% else %>
           <%= image_tag 'noimage.png', class: "index_post_image" %>
         <% end %>
@@ -23,36 +23,10 @@
       <div class="ui segment attached button" onclick="location.href='/nodes?post_id=<%= post.id %>'">
         質問に答える
       </div>
-      <div class="ui segment attached button" onclick="location.href='#/posts/<%= post.id %>'">
+      <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/#/posts/<%= post.id %>'">
         回答を見る
       </div>
     </div>
   </div>
   <% end %>
 </div>
-<!-- <h1>Posts</h1> -->
-<!-- <table>
-  <thead>
-    <tr>
-      <th>投稿一覧</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td>ユーザーid:<%= post.user_id %></td>
-        <td>No:<%= post.id %></td>
-        <td><%= post.title %></td>
-        <td>投稿日:<%= post.created_at %></td>
-        <td><%= link_to '質問一覧へ', nodes_path(post_id: post.id) %></td>
-        <td><%= link_to '編集', edit_post_path(post) %></td>
-        <td><%= link_to '削除', post, method: :delete, data: { confirm: '削除すると復元できません!本当に削除しますか?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> -->
-
-<%= javascript_pack_tag 'main' %>
-<%= stylesheet_pack_tag 'main' %>
