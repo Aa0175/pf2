@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'closure_tree'
 gem 'devise'
 gem 'foreman'
+gem 'mini_magick'
 gem 'semantic-ui-sass'
 
 
