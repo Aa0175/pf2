@@ -7,17 +7,23 @@
       <div class="ui segment" id="user_and_date">
         <div class="left">投稿者:<%= post.user.name %></div>
         <% if post.created_at == post.updated_at %>
-          <div class="right">投稿日時:<%= post.created_at %></div>
+          <div class="right">投稿日時:<%= simple_time(post.created_at) %></div>
         <% else %>
-          <div class="right">投稿日時:<%= post.created_at %></div>
+          <div class="right">投稿日時:<%= simple_time(post.updated_at) %></div>
         <% end %>
       </div>
-      <div class="ui segment">画像予定</div>
-      <div class="ui segment" id="post_title"><%= post.title %></div>
+      <div class="ui segment">
+        <% if post.img?%>
+          <%= image_tag post.img.url %>
+        <% else %>
+          <%= image_tag 'noimage.png', class: "index_post_image" %>
+        <% end %>
+      </div>
+      <div class="ui segment" id="index_title"><%= post.title %></div>
       <div class="ui segment attached button" onclick="location.href='/nodes?post_id=<%= post.id %>'">
         質問に答える
       </div>
-      <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>'">
+      <div class="ui segment attached button" onclick="location.href='#/posts/<%= post.id %>'">
         回答を見る
       </div>
     </div>

@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :画像 %>
+    <%= f.file_field :img, class: "image" %>
+  </div>
+
+  <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>

@@ -29,7 +29,7 @@
   }
 }
 
-#post_title {
+#index_title {
     font-size: 2em;
     text-align: center;
     white-space: nowrap;
@@ -43,8 +43,19 @@
 
 .ui.segment {
   padding: 13px;
+  text-align: center;
 }
 
 .ui.segments:not(.horizontal) > .segment:first-child {
-  height: 40px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.index_post_image {
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  align-items: center;
 }
