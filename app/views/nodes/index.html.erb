@@ -1,32 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Nodes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Post</th>
-      <th>Content</th>
-      <th>Parent</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @nodes.each do |node| %>
-      <tr>
-        <td><%= node.post_id %></td>
-        <td><%= node.content %></td>
-        <td><%= node.parent_id %></td>
-        
-        <td><%= link_to 'Show', node %></td>
-        <td><%= link_to 'Edit', edit_node_path(node) %></td>
-        <td><%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="ui one column stackable center aligned page grid">
+  <div class="column fourteen wide">
+    <div class="ui segment users_box">
+      <p id="notice"><%= notice %></p>
+      <h1>Q:<%= @result["question"].content %></h1>
+      <% @result["answers"].each do |answer| %>
+        <div class="ui segment attached button" onclick="location.href='/nodes/<%= answer.id %>'"><%= answer.content %></div>
+      <% end %>
+      <% if @result["answers"].length < 4 %>
+        <br><div class="ui segment attached button" onclick="location.href='/nodes/'">選択肢を追加する</div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <%= link_to '投稿一覧へ', posts_path %>

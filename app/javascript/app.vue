@@ -8,27 +8,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import PostIndexPage from 'PostIndexPage.vue'
-import NodeDetailPage from 'NodeDetailPage.vue'
-import NodeNewPage from 'NodeNewPage.vue'
-import NodeEditPage from 'NodeEditPage.vue'
-import PostDetailPage from "PostDetailPage.vue"
+import FirstQ_and_A from 'FirstQ_and_A.vue'
+import Q_and_A from 'Q_and_A.vue'
+// import NodeDetailPage from 'NodeDetailPage.vue'
+// import NodeNewPage from 'NodeNewPage.vue'
+// import NodeEditPage from 'NodeEditPage.vue'
+// import PostDetailPage from "PostDetailPage.vue"
 
 const router = new VueRouter({
   routes: [
-    { path: '/',
-      component: PostIndexPage  },
-    { path: '/nodes/:id(\\d+)',// :id は数値のみに制限する
-      name: 'NodeDetailPage',
-      component: NodeDetailPage  },
-    { path: '/nodes/new',
-      name: 'NodeNewPage',
-      component: NodeNewPage     },
-    { path: '/nodes/:id(\\d+)/edit',
-      name: 'NodeEditPage',
-      component: NodeEditPage   },
-    { path: '/posts/:id(\\d+)',
-      component: PostDetailPage   }
+    { path: '/:post_id(\\d+)',
+      component: FirstQ_and_A  },
+    { path: '/nodes/:id(\\d+)',
+      name: 'Q_and_A',
+      component: Q_and_A  }
+    //   ,
+    // { path: '/nodes/:id(\\d+)',// :id は数値のみに制限する
+    //   name: 'NodeDetailPage',
+    //   component: NodeDetailPage  },
+    // { path: '/nodes/new',
+    //   name: 'NodeNewPage',
+    //   component: NodeNewPage     },
+    // { path: '/nodes/:id(\\d+)/edit',
+    //   name: 'NodeEditPage',
+    //   component: NodeEditPage   },
+    // { path: '/posts/:id(\\d+)',
+    //   component: PostDetailPage   }
   ]
 })
 

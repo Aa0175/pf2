@@ -1,0 +1,11 @@
+//= require jquery
+//= require jquery.turbolinks
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require jquery_ujs
+//= require cropper.min.js
+//= require jquery-cropper.min.js
+//= require popper
+//= require bootstrap-sprockets
+//= require_tree .

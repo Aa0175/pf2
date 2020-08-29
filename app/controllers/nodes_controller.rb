@@ -4,13 +4,41 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    $post_id = params[:post_id] unless params[:post_id].nil?
-    @nodes = Node.where(post_id: $post_id)
+    @result = {}
+    @post_id = params[:post_id]
+    @question = Node.find_by(post_id: @post_id, parent_id: nil)
+    if @question.nil?
+      redirect_to "/posts/#{@post_id}/#/posts/#{@post_id}"
+    else
+      @result["question"] = @question
+      answers = @question.children
+      @result["answers"] = []
+      i = 0
+      for a in answers do
+        @result["answers"][i] = a
+        i += 1
+      end
+    end
   end
 
   # GET /nodes/1
   # GET /nodes/1.json
   def show
+    @result = {}
+    node_id = params[:id]
+    @question = Node.find_by(parent_id: node_id)
+    if @question.nil?
+      redirect_to "/posts/#{@node.post_id}/#/posts/#{@node.post_id}"
+    else
+      @result["question"] = @question
+      answers = @question.children
+      @result["answers"] = []
+      i = 0
+      for a in answers do
+        @result["answers"][i] = a
+        i += 1
+      end
+    end
   end
 
   def new_q

@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require cropper.min.css
  *= require_self
  */
 
@@ -64,4 +65,8 @@
   width: auto;              //後々削除
   height: auto;
   object-fit: cover;       //後々削除
+}
+
+.ui.segment.users_box {
+  margin-top: 35px;
 }

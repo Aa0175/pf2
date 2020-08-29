@@ -34,6 +34,8 @@ gem 'devise'
 gem 'foreman'
 gem 'mini_magick'
 gem 'semantic-ui-sass'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
 
 group :development, :test do
