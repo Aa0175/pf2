@@ -6,12 +6,31 @@ class Api::V1::NodesController < ApiController
   rescue_from ActiveRecord::RecordNotFound, with: :render_status_404
 
   def index
-    nodes = Node.all
-    render json: nodes
+    post_id = params[:post_id]
+    question = Node.find_by(post_id: post_id, parent_id: nil)
+    answers = question.children
+    result = []
+    result[0] = question
+    i = 1
+    for a in answers do
+      result[i] = a
+      i += 1
+    end
+    render json: result
   end
 
   def show
-    render json: @node
+    node_id = params[:id]
+    question = Node.find_by(parent_id: node_id)
+    answers = question.children
+    result = []
+    result[0] = question
+    i = 1
+    for a in answers do
+      result[i] = a
+      i += 1
+    end
+    render json: result
   end
 
   def create
@@ -52,5 +71,32 @@ class Api::V1::NodesController < ApiController
 
     def render_status_500(exception)
       render json: { errors: [exception] }, status: 500
+    end
+
+    def recursive_dfs(todo)
+      @node = Node.find_by(id: todo)
+      hash = {}
+      hash['id'] = @node.id
+      hash['title'] = @node.content
+      if @node.children.present?
+        children_todo = @node.children.ids
+        i = 1
+        loop do
+          return hash if children_todo.empty?
+          c = children_todo[0]
+          if hash['children']
+            r = recursive_dfs(c)
+            hash['children'][i] = r
+            i += 1
+          else
+            r = recursive_dfs(c)
+            hash['children'] = [r]
+          end
+          children_todo.shift
+        end
+      else
+        return hash
+      end
+      return hash
     end
 end

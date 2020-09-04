@@ -1,9 +1,20 @@
-<h2>title:<%= @post_title %></h2><br>
+<div class="ui one column stackable center aligned page grid">
+  <div class="column fourteen wide">
+    <div class="ui segment users_box">
+      <h2 class="new_title">title:<%= @post_title %></h2><br>
 
-<% if @node_a.present? %>
-  <h2>1つ前の回答:<%= @node_a.content %></h2>
-<% end %>
+      <% if @first_time == true %>
+        <h2 id="new_question">最初の質問を設定してください</h2>
+      <% else %>
+        <h2 id="new_question">新しい質問を追加</h2>
+      <% end %>
 
-<h1>新しい質問の追加</h1>
+      <% if @node_a.present? %>
+        <h2>1つ前の答え:<%= @node_a.content %></h2>
+      <% end %>
 
-<%= render 'form_q', node: @node %>
+      <p id="notice_new_q"><%= flash[:notice] %></p>
+      <%= render 'form_q', node: @node %>
+    </div>
+  </div>
+</div>

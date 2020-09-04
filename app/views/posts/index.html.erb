@@ -1,34 +1,43 @@
+<!-- <div id="modal" class="modal">
+       <div class="modal-content">
+           <div class="modal-body">
+               <h1>hello</h1>
+               <input type="button" id="closeBtn" value="close">  <= 追加
+           </div>
+       </div>
+   </div>
+
+<input type="button" id="btn" value='click me'> -->
+
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
-<%= link_to '新規投稿', new_post_path %>
-<% if user_signed_in? %>
-  <%= link_to 'ユーザーページ',  user_path(current_user) %>
-  <%= link_to 'ログアウト',  destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to '新規登録', new_user_registration_path %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>投稿一覧</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td>ユーザーid:<%= post.user_id %></td>
-        <td>No:<%= post.id %></td>
-        <td><%= post.title %></td>
-        <td>投稿日:<%= post.created_at %></td>
-        <td><%= link_to '質問一覧へ', nodes_path(post_id: post.id) %></td>
-        <td><%= link_to '編集', edit_post_path(post) %></td>
-        <td><%= link_to '削除', post, method: :delete, data: { confirm: '削除すると復元できません!本当に削除しますか?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="container" class="ui stackable three column grid">
+  <% @posts.each do |post| %>
+  <div class="column">
+    <div class="ui segments">
+      <div class="ui segment" id="user_and_date">
+        <div class="left">投稿者:<%= post.user.name %></div>
+        <% if post.created_at == post.updated_at %>
+          <div class="right">投稿日時:<%= simple_time(post.created_at) %></div>
+        <% else %>
+          <div class="right">投稿日時:<%= simple_time(post.updated_at) %></div>
+        <% end %>
+      </div>
+      <div class="ui segment second">
+        <% if post.img?%>
+          <%= image_tag post.img.url, class: "index_post_image" %>
+        <% else %>
+          <%= image_tag 'noimage.png', class: "index_post_image" %>
+        <% end %>
+      </div>
+      <div class="ui segment" id="index_title"><%= post.title %></div>
+      <div class="ui segment attached button" onclick="location.href='/nodes?post_id=<%= post.id %>'">
+        質問に答える
+      </div>
+      <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/#/posts/<%= post.id %>'">
+        回答を見る
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

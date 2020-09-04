@@ -1,7 +1,8 @@
-Vue.config.devtools = true;
-
 import Vue from 'vue'
 import App from '../app_voc.vue'
+
+Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

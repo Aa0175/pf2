@@ -1,32 +1,9 @@
 <%= form_with(model: node, local: true, url: {controller: 'nodes', action: 'create_q'}) do |form| %>
-  <% if node.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(node.errors.count, "error") %> prohibited this node from being saved:</h2>
-
-      <ul>
-        <% node.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
-    <%= form.label :post_id %>
-    <%= form.number_field :post_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :parent_id %>
-    <%= form.number_field :parent_id %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '次へ'%>
   </div>
 <% end %>

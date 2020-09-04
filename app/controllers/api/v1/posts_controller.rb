@@ -1,5 +1,7 @@
 class Api::V1::PostsController < ApiController
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:show, :update, :destroy]
+
+  rescue_from Exception, with: :render_status_500
 
 # ActiveRecordのレコードが見つからなければ404 not foundを応答する
   rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -17,6 +19,28 @@ class Api::V1::PostsController < ApiController
     todo = root_node.id
     $result = recursive_dfs(todo)
     render json: $result
+  end
+
+  def create
+    post = Post.new(post_params)
+    if post.save
+      render json: post, satatus: :created
+    else
+      render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @post.update_attributes(post_params)
+      head :no_content
+    else
+      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post.destroy!
+    head :no_content
   end
 
   private

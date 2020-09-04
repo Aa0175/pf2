@@ -11,5 +11,141 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require cropper.min.css
  *= require_self
  */
+
+@import "semantic-ui";
+#container {
+  margin: 10px;
+}
+
+.ui.menu {
+  height: 50px;
+  padding-left: 5px;
+  background: #20b2aa;
+  border-radius: 0;
+  .item{
+    color: #FFFFFF;
+  }
+}
+
+#index_title {
+    font-size: 2em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#menu_logo {
+  padding: 0px;
+}
+
+.ui.grid > .column:not(.row) {
+  padding: 20px;
+}
+
+.ui.segment {
+  padding: 13px;
+  text-align: center;
+}
+
+.ui.segments:not(.horizontal) > .segment:first-child {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.index_post_image {
+  margin: auto;
+  max-width: 100%;
+  max-height: 223.797px;    //後々削除
+  width: auto;              //後々削除
+  height: auto;
+  object-fit: cover;       //後々削除
+}
+
+.ui.segment.users_box {
+  margin-top: 35px;
+}
+
+
+//new_q
+#new_question {
+  margin-top: 14px;
+}
+#notice_new_q {
+  color: red;
+  font-size: 20px;
+}
+
+
+//new_qとnew_a
+h2 {
+  margin: 0px;
+}
+h2:first-child {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+.field_with_errors {
+  display: flex;
+  input {
+    margin-left: 11%;
+    margin-right: auto;
+  }
+}
+
+
+
+//モーダルウィンドウ
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+height: 100%;
+width: 100%;
+overflow: auto;
+background-color: rgba(0,0,0,0.5);
+
+display: flex;
+align-items: center;
+// justify-content: center;
+}
+
+// .modal {
+//   display: none;
+//   /*　要素を重ねた時の順番　*/
+//   z-index:1;
+//
+//   /*　画面全体を覆う設定　*/
+//   position:fixed;
+//   top:0;
+//   left:0;
+//   width:100%;
+//   height:100%;
+//   background-color:rgba(0,0,0,0.5);
+//
+//   /*　画面の中央に要素を表示させる設定　*/
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//
+// }
+
+.modal-content{
+background-color: white;
+width: 500px;
+margin: 40% auto;
+}
+
+// .modal-content {
+//   z-index:2;
+//   width:50%;
+//   padding: 1em;
+//   background:#fff;
+// }

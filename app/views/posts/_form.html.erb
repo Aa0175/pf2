@@ -1,23 +1,18 @@
 <%= form_with(model: post, local: true) do |f| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
-    <%= f.label :title %>
+    <h2>チャートのタイトル</h2>
+    <p id="notice_new_q"><%= flash[:notice] %></p>
     <%= f.text_field :title %>
   </div>
 
+  <div class="field">
+    <%= f.label :画像 %>
+    <%= f.file_field :img, class: "image" %>
+    <p><%= f.check_box :remove_img %>画像を削除する</p>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '次へ' %>
   </div>
 
 <% end %>

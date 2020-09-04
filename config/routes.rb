@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  resources :answers
-  resources :questions
   resources :posts
 
   devise_for :users, controllers: {   registrations: 'users/registrations',
@@ -17,7 +15,7 @@ Rails.application.routes.draw do
   namespace :api, {format: 'json'} do
       namespace :v1 do
         resources :nodes, only: [:index, :show, :create, :update, :destroy]
-        resources :posts, only: [:index, :show]
+        resources :posts, only: [:index, :show, :create, :update, :destroy]
       end
   end
 
