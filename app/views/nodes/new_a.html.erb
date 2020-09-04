@@ -1,7 +1,12 @@
-<h2>title:<%= @post_title %></h2><br>
-<h2>質問:<%= @node_q.content %></h2>
-<h2>回答の追加</h2>
+<div class="ui one column stackable center aligned page grid">
+  <div class="column fourteen wide">
+    <div class="ui segment users_box">
+      <h2>title:<%= @post_title %></h2><br>
+      <h2>質問:<%= @node_q.content %></h2>
+      <h1>回答の追加</h1>
 
-<%= render 'form_a', node: @node %>
-
-<%= link_to 'Back', nodes_path %>
+      <%= render 'form_a', node: @node %>
+      <%= link_to 'Back', nodes_path %>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,6 @@
   import OrganizationChart from 'vue-organization-chart'
   import 'vue-organization-chart/dist/orgchart1.css'
 
-
   export default {
     components: {
       OrganizationChart

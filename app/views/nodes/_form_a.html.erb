@@ -12,36 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :post_id %>
-    <%= form.number_field :post_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :parent_id %>
-    <%= form.number_field :parent_id %>
-  </div>
-
-  <div class="field">
     <tbody>
-    <%= form.label :content, value: "選択肢を追加" %>
     <tr>
     <% if @nodes.present? %>
+      <% if user_signed_in? && @post.user_id == current_user.id %>
         <% @nodes.each do |node| %>
-          <p><tb><%= node.content %></tb><tb><%= link_to '削除', node, method: :delete %></tb></p>
+          <div class="ui segment attached button" date-method="delete" onclick="location.href='/nodes/<%= node.id %>'">
+            <%= node.content %><%= link_to '削除', node, method: :delete %>
+          </div>
         <% end %>
+      <% else %>
+        <% @nodes.each do |node| %>
+          <div class="ui segment"><%= node.content %></div>
+        <% end %>
+      <% end %>
     <% end %>
     <%= form.text_field :content %>
     </tr>
     </tbody>
   </div>
 
-
-
   <div class="actions">
-  <% if @nodes.nil? or @nodes.count < 3 %>
-    <%= form.submit '他の選択肢を追加' %>
-  <% end %>
+  <% if user_signed_in? && @post.user_id == current_user.id %>
+    <% if @nodes.nil? or @nodes.count < 3 %>
+      <%= form.submit '他の選択肢を追加' %>
+    <% end %>
     <%= form.submit '他の質問を追加' %>
+  <% end %>
     <%= form.submit '投稿する' %>
   </div>
 <% end %>

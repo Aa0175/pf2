@@ -1,45 +1,31 @@
 class NodesController < ApplicationController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
 
-  # GET /nodes
-  # GET /nodes.json
+
   def index
-    @result = {}
     @post_id = params[:post_id]
     @question = Node.find_by(post_id: @post_id, parent_id: nil)
     if @question.nil?
       redirect_to "/posts/#{@post_id}/#/posts/#{@post_id}"
     else
-      @result["question"] = @question
-      answers = @question.children
-      @result["answers"] = []
-      i = 0
-      for a in answers do
-        @result["answers"][i] = a
-        i += 1
-      end
+      @answers = @question.children
     end
+    $r_source ="show"
   end
 
-  # GET /nodes/1
-  # GET /nodes/1.json
+
   def show
-    @result = {}
     node_id = params[:id]
     @question = Node.find_by(parent_id: node_id)
     if @question.nil?
       redirect_to "/posts/#{@node.post_id}/#/posts/#{@node.post_id}"
     else
-      @result["question"] = @question
-      answers = @question.children
-      @result["answers"] = []
-      i = 0
-      for a in answers do
-        @result["answers"][i] = a
-        i += 1
-      end
+      @answers = @question.children
     end
+    #選択肢追加用
+    $r_source ="show"
   end
+
 
   def new_q
     @node = Node.new
@@ -53,6 +39,7 @@ class NodesController < ApplicationController
     if flash[:first_time] == true
       $post_title = Post.find($post_id).title
       @node_a = nil
+      @first_time = true
       flash[:first_time] = true
     end
     @post_title = $post_title
@@ -73,10 +60,11 @@ class NodesController < ApplicationController
           flash[:first_time] = false
         end
         $r_source = "q"
-        format.html { redirect_to new_a_nodes_path, notice: 'Node was successfully created.' }
+        format.html { redirect_to new_a_nodes_path }
         format.json { render :show, status: :created, location: @node }
       else
         @post_title = $post_title
+        flash[:notice] = '質問を入力してください。'
         format.html { render new_q_nodes_path }
         format.json { render json: @node.errors, status: :unprocessable_entity }
       end
@@ -89,9 +77,22 @@ class NodesController < ApplicationController
 
     if $r_source == "a"
       @nodes = Node.where(parent_id: $parent_id)
+      @post = Post.find($post_id)
     elsif $r_source == "q"
       $node_q = Node.last
+      @post = Post.find($post_id)
+    elsif $r_source == "show"
+      q_id = params[:q_id]
+      $post_id = params[:post_id]
+      $node_q = Node.find(q_id)
+      @post = Post.find($post_id)
+      $post_title = @post.title
+      if Node.where(parent_id: q_id)
+        @nodes = Node.where(parent_id: q_id)
+      end
     end
+
+    redirect_to ("/posts/#{$post_id}/#/posts/#{$post_id}") and return if $r_source != "q" && (@nodes.nil? || @nodes.length >= 4)
 
     @post_title = $post_title
     @node_q = $node_q
@@ -110,12 +111,12 @@ class NodesController < ApplicationController
         $r_source = "a"
         #new_q or new_a or post#showに飛ぶ★現在はnodes#index
         if params[:commit] == "他の選択肢を追加"
-          format.html { redirect_to new_a_nodes_path, notice: 'Node was successfully created.' }
+          format.html { redirect_to new_a_nodes_path }
           format.json { render :show, status: :created, location: @node }
         elsif params[:commit] == "他の質問を追加"
-          format.html { redirect_to new_q_nodes_path, notice: 'Node was successfully created.' }
+          format.html { redirect_to new_q_nodes_path }
         else
-          format.html { redirect_to nodes_path(@node.post_id), notice: 'Node was successfully created.' }
+          format.html { redirect_to ("/posts/#{@node.post_id}/#/posts/#{@node.post_id}") and return }
         end
       else
         @post_title = $post_title
@@ -124,11 +125,11 @@ class NodesController < ApplicationController
         if params[:commit] == "他の選択肢を追加"
           format.html { render new_a_nodes_path }
           format.json { render json: @node.errors, status: :unprocessable_entity }
-        elsif  params[:commit] == "他の質問を追加"
+        elsif params[:commit] == "他の質問を追加"
           format.html { render new_a_nodes_path } if @nodes.blank?
-          format.html { redirect_to new_q_nodes_path, notice: 'Node was successfully created.' }
+          format.html { redirect_to new_q_nodes_path }
         else
-          format.html { redirect_to nodes_path(@node.post_id), notice: 'Node was successfully created.' }
+          format.html { redirect_to ("/posts/#{@node_q.post_id}/#/posts/#{@node_q.post_id}") and return }
         end
       end
     end

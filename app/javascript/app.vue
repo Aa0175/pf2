@@ -8,8 +8,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import FirstQ_and_A from 'FirstQ_and_A.vue'
-import Q_and_A from 'Q_and_A.vue'
+import Test from 'Test.vue'
 // import NodeDetailPage from 'NodeDetailPage.vue'
 // import NodeNewPage from 'NodeNewPage.vue'
 // import NodeEditPage from 'NodeEditPage.vue'
@@ -17,11 +16,13 @@ import Q_and_A from 'Q_and_A.vue'
 
 const router = new VueRouter({
   routes: [
-    { path: '/:post_id(\\d+)',
-      component: FirstQ_and_A  },
-    { path: '/nodes/:id(\\d+)',
-      name: 'Q_and_A',
-      component: Q_and_A  }
+    { path: '/',
+      component: Test }
+    // { path: '/:post_id(\\d+)',
+    //   component: FirstQ_and_A  },
+    // { path: '/nodes/:id(\\d+)',
+    //   name: 'Q_and_A',
+    //   component: Q_and_A  }
     //   ,
     // { path: '/nodes/:id(\\d+)',// :id は数値のみに制限する
     //   name: 'NodeDetailPage',

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  resources :answers
-  resources :questions
   resources :posts
 
   devise_for :users, controllers: {   registrations: 'users/registrations',

@@ -2,15 +2,15 @@
   <div class="column fourteen wide">
     <div class="ui segment users_box">
       <p id="notice"><%= notice %></p>
-      <h1>Q:<%= @result["question"].content %></h1>
-      <% @result["answers"].each do |answer| %>
+      <h1>Q:<%= @question.content %></h1>
+      <% @answers.each do |answer| %>
         <div class="ui segment attached button" onclick="location.href='/nodes/<%= answer.id %>'"><%= answer.content %></div>
       <% end %>
-      <% if @result["answers"].length < 4 %>
-        <br><div class="ui segment attached button" onclick="location.href='/nodes/'">選択肢を追加する</div>
+      <% if @answers.length < 4 %>
+        <br><div class="ui segment attached button" onclick="location.href='/nodes/new_a?q_id=<%= @question.id %>&post_id=<%= @question.post_id %>'">選択肢を追加する</div>
       <% end %>
     </div>
   </div>
 </div>
 
-<%= link_to '投稿一覧へ', posts_path %>
+<%= link_to 'トップ画面に戻る', posts_path %>

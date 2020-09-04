@@ -34,9 +34,10 @@ class PostsController < ApplicationController
       if @post.save
         $post_id = @post.id
         flash[:first_time] = true
-        format.html { redirect_to new_q_nodes_path($post_id), notice: 'Post was successfully created.' }
+        format.html { redirect_to new_q_nodes_path($post_id) }
         format.json { render :show, status: :created, location: @post }
       else
+        flash[:notice] = 'タイトルを入力してください。'
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
