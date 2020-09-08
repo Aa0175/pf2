@@ -30,6 +30,8 @@ gem 'activeadmin'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'carrierwave'
 gem 'closure_tree'
+gem "chartkick"
+gem 'chartable'
 gem 'devise'
 gem 'foreman'
 gem 'mini_magick'

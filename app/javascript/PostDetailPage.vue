@@ -7,7 +7,7 @@
 <script>
   import axios from 'axios';
   import OrganizationChart from 'vue-organization-chart'
-  import 'vue-organization-chart/dist/orgchart1.css'
+  import 'vue-organization-chart/dist/orgchart.css'
 
   export default {
     components: {

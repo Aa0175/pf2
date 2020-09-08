@@ -3,7 +3,7 @@ var modal = document.getElementById('modal');
 var closeBtn = document.getElementById('closeBtn');
 
 btn.addEventListener('click', function() {
-  modal.style.display = 'block';
+  modal.style.display = 'flex';
 });
 closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';

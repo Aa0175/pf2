@@ -6,6 +6,7 @@ class NodesController < ApplicationController
     @post_id = params[:post_id]
     @question = Node.find_by(post_id: @post_id, parent_id: nil)
     if @question.nil?
+      last_answer
       redirect_to "/posts/#{@post_id}/#/posts/#{@post_id}"
     else
       @answers = @question.children
@@ -17,7 +18,9 @@ class NodesController < ApplicationController
   def show
     node_id = params[:id]
     @question = Node.find_by(parent_id: node_id)
+    #次の質問がなかったらtrue
     if @question.nil?
+      last_answer
       redirect_to "/posts/#{@node.post_id}/#/posts/#{@node.post_id}"
     else
       @answers = @question.children
@@ -108,14 +111,26 @@ class NodesController < ApplicationController
         $node_q.add_child(@node)
         $parent_id = @node.parent_id
 
-        $r_source = "a"
+        # if $r_source == "show"
+        #   @node.total += 1
+        #   @node_total = @node.total
+        #   @post = Post.find(@node.post_id)
+        #   @post.total += 1
+        #   @node.save
+        #   @post.save
+        # end
+
         #new_q or new_a or post#showに飛ぶ★現在はnodes#index
         if params[:commit] == "他の選択肢を追加"
+          $r_source = "a"
           format.html { redirect_to new_a_nodes_path }
           format.json { render :show, status: :created, location: @node }
         elsif params[:commit] == "他の質問を追加"
+          $r_source = "a"
           format.html { redirect_to new_q_nodes_path }
         else
+          last_answer if $r_source == "show"
+          $r_source = "a"
           format.html { redirect_to ("/posts/#{@node.post_id}/#/posts/#{@node.post_id}") and return }
         end
       else
@@ -129,6 +144,7 @@ class NodesController < ApplicationController
           format.html { render new_a_nodes_path } if @nodes.blank?
           format.html { redirect_to new_q_nodes_path }
         else
+          flash[:r_source] = "last answer"
           format.html { redirect_to ("/posts/#{@node_q.post_id}/#/posts/#{@node_q.post_id}") and return }
         end
       end
@@ -170,5 +186,20 @@ class NodesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def node_params
       params.require(:node).permit(:post_id, :content, :parent_id)
+    end
+
+    def last_answer
+      @node.total += 1
+      flash[:node_total] = @node.total
+      @node.save
+      @nodes = @node.ancestors
+      for node in @nodes do
+        node.total += 1
+        node.save
+      end
+      @post = Post.find(@node.post_id)
+      @post.total += 1
+      @post.save
+      flash[:r_source] = "last answer"
     end
 end

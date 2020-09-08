@@ -10,7 +10,25 @@
   <%= @post.title %>
 </h2>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<% if flash[:r_source] == "last answer" %>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="ui segment modal-body">
+      <h1>あなたと同じ行動をとる人は<br><%= @node_total %>人/<%= @post.total %>人です！</h1>
+      <br>
+      <!-- <br><br><br><br><br><br><br> -->
+      <%= pie_chart(@chart) %>
+      <!-- <br><br><br><br><br><br><br><br> -->
+      <br>
+      <input type="button" id="closeBtn" class="ui segment attached button " value="close">
+    </div>
+  </div>
+</div>
+
+<input type="button" id="btn" value='結果を見る'>
+<% end %>
 
 <%= javascript_pack_tag 'modal' %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
