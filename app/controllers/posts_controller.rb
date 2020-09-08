@@ -6,13 +6,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    # post_id = params[:id]
-    # @node = Node.find_by(id: post_id, parent_id: nil)
-    # # todo(最初)[0] = root_node.id
-    # todo = [@node.id]
-    # $test_result = []
-    #
-    # recursive_dfs(todo)
+    @r_source = flash[:r_source] unless flash[:r_source].nil?
+    flash[:r_source] = @r_source
+    @node_total = flash[:node_total]
+    @chart  = {"あなたと同じ行動" => @node_total, "その他" => @post.total}
   end
 
   def new
