@@ -6,10 +6,25 @@ class PostsController < ApplicationController
   end
 
   def show
-    @r_source = flash[:r_source] unless flash[:r_source].nil?
-    flash[:r_source] = @r_source
-    @node_total = flash[:node_total]
-    @chart  = {"あなたと同じ行動" => @node_total, "その他" => @post.total}
+    if flash[:r_source] != nil
+      @r_source = flash[:r_source]
+      flash[:r_source] = @r_source
+      @node_id = flash[:node_id]
+      flash[:node_id] = @node_id
+      @node = Node.find(@node_id)
+      @chart  = { @node.content => @node.total }
+      for node in @node.root.leaves do
+        next if node.id == @node.id
+        @chart[node.content] = node.total
+      end
+      # for node in @node.siblings do
+      #   next if node.total == 0
+      #   @chart[node.content] = node.total
+      # end
+      # for node in @node.root.children do
+      #   @chart[node.content] = node.total
+      # end
+    end
   end
 
   def new
