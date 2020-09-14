@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    if flash[:r_source] != nil
+    if flash[:r_source] != nil && flash[:node_id] != nil
       @r_source = flash[:r_source]
       flash[:r_source] = @r_source
       @node_id = flash[:node_id]

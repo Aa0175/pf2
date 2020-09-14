@@ -99,6 +99,23 @@ h2:first-child {
 }
 
 
+//user/show
+.column .profile {
+  margin-left: 10px;
+}
+
+//クラス名をindex_post_imageに変更後削除
+.user_post_image {
+  margin: auto;
+  max-width: 100%;
+  max-height: 198.25px;
+  width: auto;              //後々削除
+  height: auto;
+  object-fit: cover;       //後々削除
+}
+
+
+
 //モーダルウィンドウ
 .modal {
 z-index: 1;
