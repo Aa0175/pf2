@@ -37,11 +37,17 @@
                 <% end %>
               </div>
               <div class="ui segment" id="index_title"><%= post.title %></div>
+              <% if user_signed_in? && @user == current_user %>
+                <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/edit'">
+                  編集する
+                </div>
+              <% else %>
+                <div class="ui segment attached button" onclick="location.href='/nodes?post_id=<%= post.id %>'">
+                  質問に答える
+                </div>
+              <% end %>
               <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/#/posts/<%= post.id %>'">
                 回答を見る
-              </div>
-              <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/edit'">
-                編集する
               </div>
             </div>
           </div>
