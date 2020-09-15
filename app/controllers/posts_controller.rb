@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
 
   def index
     @posts = Post.all
@@ -79,6 +79,13 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    @title = params[:title]
+    @posts = Post.where('title LIKE ?', "%#{@title}%" )
+    render :index
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

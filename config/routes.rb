@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  resources :posts
+  resources :posts do
+    get :search, on: :collection
+    get :favorite_index
+    post :create_favorite
+  end
 
   devise_for :users, controllers: {   registrations: 'users/registrations',
                                       sessions: 'users/sessions',
@@ -11,17 +15,13 @@ Rails.application.routes.draw do
 
   get "users/:id", :to => "users#show", as: "user"
   get "users/", :to => "users#index", as: "users"
-
   get "users/personalities", :to => "users#personalities"
   get "users/big_five", :to => "users#big_five"
   post "users/personalities/:id", :to => "users#personalities_create"
   post "users/big_five/:id", :to => "users#big_five_create"
   get "users/favorite_users", :to => "users#favorite_users"
-  get "posts/favorite_index", :to => "posts#favorite_index"
   post "users/favorite_users/:id", :to => "users#favorite_create"
-  post "posts/favorite_index/:id", :to => "posts#favorite_create"
   get "users/search", :to => "users#search"
-  get "posts/search", :to => "posts#search"
 
   namespace :api, {format: 'json'} do
       namespace :v1 do
