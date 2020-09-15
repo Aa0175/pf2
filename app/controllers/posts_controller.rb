@@ -1,15 +1,30 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
 
   def index
     @posts = Post.all
   end
 
   def show
-    @r_source = flash[:r_source] unless flash[:r_source].nil?
-    flash[:r_source] = @r_source
-    @node_total = flash[:node_total]
-    @chart  = {"あなたと同じ行動" => @node_total, "その他" => @post.total}
+    if flash[:r_source] != nil && flash[:node_id] != nil
+      @r_source = flash[:r_source]
+      flash[:r_source] = @r_source
+      @node_id = flash[:node_id]
+      flash[:node_id] = @node_id
+      @node = Node.find(@node_id)
+      @chart  = { @node.content => @node.total }
+      for node in @node.root.leaves do
+        next if node.id == @node.id
+        @chart[node.content] = node.total
+      end
+      # for node in @node.siblings do
+      #   next if node.total == 0
+      #   @chart[node.content] = node.total
+      # end
+      # for node in @node.root.children do
+      #   @chart[node.content] = node.total
+      # end
+    end
   end
 
   def new
@@ -64,6 +79,13 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    @title = params[:title]
+    @posts = Post.where('title LIKE ?', "%#{@title}%" )
+    render :index
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

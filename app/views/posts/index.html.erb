@@ -12,6 +12,11 @@
 <p id="notice"><%= notice %></p>
 
 <div id="container" class="ui stackable three column grid">
+  <% if @posts.empty? %>
+    <div class="search_result">
+      <h1 class="center">「<%= @title %>」を含む投稿は見つかりませんでした</h1>
+    </div>
+  <% end %>
   <% @posts.each do |post| %>
   <div class="column">
     <div class="ui segments">

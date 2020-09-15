@@ -1,10 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
 
-<%= link_to 'ユーザー情報編集',  edit_user_registration_path %> |
+<div class="ui stackable three column grid">
+  <div class="column profile">
+    <div class="ui segment">
+      <br><br><br>
+      <br><br><br>プロフ画像<br><br><br><br>
+      <br><br><br>
+      <h2><%= @user.name %></h2>
+      <p><%= link_to 'ユーザー情報編集',  edit_user_registration_path %></p>
+      <br>
+      <p>お気に入り</p>
+      <p>自分の属性</p>
+    </div>
+  </div>
+
+
+  <div class="ten wide column">
+    <h1>過去の投稿一覧</h1>
+      <div id="container" class="ui stackable two column grid">
+        <% @posts.each do |post| %>
+          <div class="column">
+            <div class="ui segments">
+              <div class="ui segment">
+                <% if post.created_at == post.updated_at %>
+                  <div class="right">投稿日時:<%= simple_time(post.created_at) %></div>
+                <% else %>
+                  <div class="right">投稿日時:<%= simple_time(post.updated_at) %></div>
+                <% end %>
+              </div>
+              <div class="ui segment second">
+                <% if post.img?%>
+                  <%= image_tag post.img.url, class: "user_post_image" %>
+                <% else %>
+                  <%= image_tag 'noimage.png', class: "user_post_image" %>
+                <% end %>
+              </div>
+              <div class="ui segment" id="index_title"><%= post.title %></div>
+              <% if user_signed_in? && @user == current_user %>
+                <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/edit'">
+                  編集する
+                </div>
+              <% else %>
+                <div class="ui segment attached button" onclick="location.href='/nodes?post_id=<%= post.id %>'">
+                  質問に答える
+                </div>
+              <% end %>
+              <div class="ui segment attached button" onclick="location.href='/posts/<%= post.id %>/#/posts/<%= post.id %>'">
+                回答を見る
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
+
 <%= link_to 'ログアウト',  destroy_user_session_path, :method => :delete %> |
 <%= link_to '投稿一覧へ', posts_path %>

@@ -190,7 +190,7 @@ class NodesController < ApplicationController
 
     def last_answer
       @node.total += 1
-      flash[:node_total] = @node.total
+      flash[:node_id] = @node.id
       @node.save
       @nodes = @node.ancestors
       for node in @nodes do
