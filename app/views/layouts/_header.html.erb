@@ -8,20 +8,19 @@
     <div class="item">
       <form class="ui transparent icon input" action="/posts/search" accept-charset="UTF-8" method="get">
           <input placeholder="投稿タイトルを検索" type="text" name="title" id="title">
-          <button type="submit" name="commit" value="search">
+          <button id="posts_search_button" type="submit" name="commit" value="search">
             <i class="fas fa-search"></i>
-            <!-- <input class="fas fa-search" type="submit" name="commit" value="search" data-disable-with="search"> -->
           </button>
       </form>
     </div>
+    <a class="item" href="/posts/new">
+      <i class="fas fa-plus"> 新規投稿</i>
+    </a>
     <a class="item" href="/posts">
       <i class="fas fa-th"> 最新の投稿一覧</i>
     </a>
     <a class="item" href="/users">
       <i class="fas fa-users"> ユーザー一覧</i>
-    </a>
-    <a class="item" href="/posts/new">
-      <i class="fas fa-plus"> 新規投稿</i>
     </a>
     <% if user_signed_in? %>
       <a class="item" href="/users/<%= current_user.id %>">

@@ -13,15 +13,16 @@ Rails.application.routes.draw do
   root 'posts#index'
   # root to: 'home#index'
 
-  get "users/:id", :to => "users#show", as: "user"
-  get "users/", :to => "users#index", as: "users"
-  get "users/personalities", :to => "users#personalities"
-  get "users/big_five", :to => "users#big_five"
-  post "users/personalities/:id", :to => "users#personalities_create"
-  post "users/big_five/:id", :to => "users#big_five_create"
-  get "users/favorite_users", :to => "users#favorite_users"
-  post "users/favorite_users/:id", :to => "users#favorite_create"
-  get "users/search", :to => "users#search"
+  resources :users do
+    get "personalities", :to => "users#personalities"
+    get "big_five", :to => "users#big_five"
+    post "personalities/:id", :to => "users#personalities_create"
+    post "big_five/:id", :to => "users#big_five_create"
+    get "favorite", :to => "users#favorite_users"
+    post "favorite:id", :to => "users#favorite_create"
+    get :search, on: :collection
+    get :attributes, on: :collection
+  end
 
   namespace :api, {format: 'json'} do
       namespace :v1 do

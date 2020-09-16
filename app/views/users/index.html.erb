@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-<%= form_with url: users_search_path, method: :get, local: true do |f| %>
-  <%= f.text_field :name, id: "cross_search"%>
+<%= form_with url:  search_users_path, method: :get, class: "search_users", local: true do |f| %>
+  <%= f.text_field :name, placeholder: "ユーザー名を検索" %>
   <%= f.submit :search, value: "検索" %>
 <% end %>
 

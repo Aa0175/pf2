@@ -1,0 +1,50 @@
+<div class="ui one column stackable center aligned page grid">
+   <div class="column ten wide">
+     <div class="ui segment users_box">
+       <h1>属性の設定</h1>
+       <%= form_with url: attributes_users_path, local: true do |f| %>
+         <div class="field">
+           <%= f.label :年齢 %>
+           <%= f.number_field :age %>
+         </div>
+         <div class="field">
+           <%= f.label :性別 %>
+           <%= f.select :sex, {'-': 1, '男性': 2, '女性': 3, 'その他': 4}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+         </div>
+         <div class="field">
+           <%= f.label :身長 %>
+           <%= f.number_field :height, value: "165.0", step: "0.1" %>
+         </div>
+         <div class="field">
+           <%= f.label :体重 %>
+           <%= f.number_field :weight, value: "60.0", step: "0.1" %>
+         </div>
+         <div class="field">
+           <%= f.label :出身 %>
+           <%= f.text_field :birthplace %>
+         </div>
+         <div class="field">
+           <%= f.label :居住地 %>
+           <%= f.text_field :residence %>
+         </div>
+         <div class="field">
+           <%= f.label :職業 %>
+           <%= f.text_field :job %>
+         </div>
+         <div class="field">
+           <%= f.label :同居人 %>
+           <%= f.select :live_with, {'-': 1, '一人暮らし': 2, '実家暮らし': 3, '兄弟姉妹': 4, '友達': 5, 'ペット': 6, 'その他': 7},
+                                    { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+         </div>
+         <!-- <div class="field">
+           <%= f.label :趣味 %>
+           <%= f.text_field :hibbie %>
+         </div> -->
+         <div class="actions">
+           <%= f.submit '次へ' %>
+         </div>
+
+       <% end %>
+    </div>
+  </div>
+</div>

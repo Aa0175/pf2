@@ -15,6 +15,20 @@ class UsersController < ApplicationController
 
   def search
     @users = User.where('name LIKE ?', "%#{params[:name]}%" )
+    render :index
+  end
+
+  def attributes
+  end
+
+  def save_attributes
+    @user = User.new(post_params)
+
+    if @user.save
+
+    else
+
+    end
   end
 
   private
@@ -25,6 +39,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :img)
+      params.require(:user).permit(:name, :img, :age, :sex, :height, :weight,
+                                   :birthplace, :residence, :job, :live_with)
     end
 end
