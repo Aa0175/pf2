@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_015935) do
+ActiveRecord::Schema.define(version: 2020_09_17_060150) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2020_09_06_015935) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "birthplaces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "birthplace", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "housemates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "housemate", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "node_hierarchies", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "ancestor_id", null: false
     t.integer "descendant_id", null: false
@@ -48,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_015935) do
     t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "total"
+    t.integer "total", default: 0
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -57,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_015935) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "img"
-    t.integer "total"
+    t.integer "total", default: 0
   end
 
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -66,6 +78,54 @@ ActiveRecord::Schema.define(version: 2020_09_06_015935) do
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "residences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "residence", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sexes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "sex", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_birthplaces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "birthplace_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["birthplace_id"], name: "index_user_birthplaces_on_birthplace_id"
+    t.index ["user_id"], name: "index_user_birthplaces_on_user_id"
+  end
+
+  create_table "user_housemates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "housemate_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["housemate_id"], name: "index_user_housemates_on_housemate_id"
+    t.index ["user_id"], name: "index_user_housemates_on_user_id"
+  end
+
+  create_table "user_residences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "residence_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["residence_id"], name: "index_user_residences_on_residence_id"
+    t.index ["user_id"], name: "index_user_residences_on_user_id"
+  end
+
+  create_table "user_sexes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sex_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sex_id"], name: "index_user_sexes_on_sex_id"
+    t.index ["user_id"], name: "index_user_sexes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -78,8 +138,20 @@ ActiveRecord::Schema.define(version: 2020_09_06_015935) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "img"
+    t.integer "age"
+    t.integer "height"
+    t.float "weight"
+    t.string "job"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_birthplaces", "birthplaces"
+  add_foreign_key "user_birthplaces", "users"
+  add_foreign_key "user_housemates", "housemates"
+  add_foreign_key "user_housemates", "users"
+  add_foreign_key "user_residences", "residences"
+  add_foreign_key "user_residences", "users"
+  add_foreign_key "user_sexes", "sexes"
+  add_foreign_key "user_sexes", "users"
 end

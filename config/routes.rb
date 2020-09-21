@@ -13,15 +13,21 @@ Rails.application.routes.draw do
   root 'posts#index'
   # root to: 'home#index'
 
-  get "users/:id", :to => "users#show", as: "user"
-  get "users/", :to => "users#index", as: "users"
-  get "users/personalities", :to => "users#personalities"
-  get "users/big_five", :to => "users#big_five"
-  post "users/personalities/:id", :to => "users#personalities_create"
-  post "users/big_five/:id", :to => "users#big_five_create"
-  get "users/favorite_users", :to => "users#favorite_users"
-  post "users/favorite_users/:id", :to => "users#favorite_create"
-  get "users/search", :to => "users#search"
+  resources :users do
+    collection do
+      get 'attributes'
+      post 'save_attributes'
+      get 'search'
+      get "personalies"
+      get "big_five"
+      post "save_personalities"
+      post "save_big_five"
+      get "favorite"
+      post "save_favorite"
+    end
+  end
+    get "users/edit_attributes/:id", :to => "users#edit_attributes", as: :edit_attributes
+    patch "users/update_attributes/:id", :to => "users#update_attributes", as: :update_attributes
 
   namespace :api, {format: 'json'} do
       namespace :v1 do
@@ -39,6 +45,6 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/users/sign_out', :to => 'users/sessions#destroy'
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+    post '/users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 end

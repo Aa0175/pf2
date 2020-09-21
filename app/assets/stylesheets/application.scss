@@ -17,10 +17,13 @@
 
 @import "semantic-ui";
 
+//ページ全般
 #container {
   margin: 10px;
 }
 
+
+//メニューバー
 .ui.menu {
   height: 50px;
   padding-left: 5px;
@@ -40,22 +43,23 @@ form input[type=submit]:not(.disabled):hover, form input[type=button]:not(.disab
   border-style: none;
 }
 :focus {
-    outline: none;
+  outline: none;
 }
 
-
 #index_title {
-    font-size: 2em;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 2em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #menu_logo {
   padding: 0px;
 }
 
+
+//posts/indexなど
 .ui.grid > .column:not(.row) {
   padding: 20px;
 }
@@ -113,11 +117,19 @@ h2:first-child {
 }
 
 
+//users/index
+.search_users {
+  text-align: center;
+  margin-top: 3%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+
 //user/show
 .column .profile {
   margin-left: 10px;
 }
-
 //クラス名をindex_post_imageに変更後削除
 .user_post_image {
   margin: auto;
@@ -126,6 +138,18 @@ h2:first-child {
   width: auto;              //後々削除
   height: auto;
   object-fit: cover;       //後々削除
+}
+
+
+//users/attributes
+form select {
+  width: calc(80% - 22px);
+  border: 1px solid #c9d0d6;
+  border-radius: 3px;
+  font-size: 0.95em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  outline: none;
+  padding: 5px 10px 10px 4px;
 }
 
 
@@ -152,10 +176,3 @@ width: 500px;
 margin: 40% auto;
 z-index:2;
 }
-//
-// .modal-content {
-//   z-index:2;
-//   width:50%;
-//   padding: 1em;
-//   background:#fff;
-// }

@@ -1,0 +1,72 @@
+<div class="ui one column stackable center aligned page grid">
+   <div class="column ten wide">
+     <div class="ui segment users_box">
+       <h1>ユーザー情報設定</h1>
+       <%= form_with url: save_attributes_users_path, local: true do |f| %>
+         <div class="field">
+           <%= f.label :年齢 %>
+           <%= f.number_field :age %>
+         </div>
+         <div class="field">
+           <%= f.label :性別 %>
+           <%= f.collection_select(:sex, @sex, :id, :sex, prompt: "選択してください") %>
+         </div>
+         <div class="field">
+           <%= f.label :身長 %>
+           <%= f.number_field :height, value: "165.0", step: "0.1" %>
+         </div>
+         <div class="field">
+           <%= f.label :体重 %>
+           <%= f.number_field :weight, value: "60.0", step: "0.1" %>
+         </div>
+         <div class="field">
+           <%= f.label :出身 %>
+           <%= f.collection_select(:birthplace, @birthplace, :id, :birthplace, prompt: "選択してください") %>
+         </div>
+         <div class="field">
+           <%= f.label :居住地 %>
+           <%= f.collection_select(:residence, @residence, :id, :residence, prompt: "選択してください") %>
+         </div>
+         <div class="field">
+           <%= f.label :職業 %>
+           <%= f.text_field :job %>
+         </div>
+         <div class="field">
+           <%= f.label :同居人 %>
+           <%= f.collection_select(:housemate, @housemate, :id, :housemate, prompt: "選択してください") %>
+         </div>
+         <!-- <div class="field">
+           <%= f.label :趣味 %>
+           <%= f.text_field :hibbie %>
+         </div> -->
+         <div class="actions">
+           <%= f.submit '次へ' %>
+         </div>
+
+         <div class="actions">
+           <%= f.submit 'スキップ' %>
+         </div>
+
+         <% if @r_source = "registrations" %>
+         <div id="modal_users" class="modal">
+           <div class="modal-content">
+             <div class="ui segment modal-body">
+               <br>
+               <p>ユーザー登録が完了しました!</p>
+               <p>引き続きユーザー情報を設定しましょう!</p>
+               <br>
+               <div class="actions">
+                 <%= f.submit 'スキップ' %>
+               </div>
+               <input type="button" id="closeBtn_users" class="ui segment attached button" value="close">
+             </div>
+           </div>
+         </div>
+         <% end %>
+
+       <% end %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'modal_users_attributes' %>
