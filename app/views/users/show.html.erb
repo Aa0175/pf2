@@ -8,7 +8,8 @@
       <br><br><br>プロフ画像<br><br><br><br>
       <br><br><br>
       <h2><%= @user.name %></h2>
-      <p><%= link_to 'ユーザー情報編集',  edit_user_registration_path %></p>
+      <p><%= link_to 'ユーザー情報編集',  edit_attributes_path(@user) %></p>
+      <p><%= link_to 'アカウント情報編集',  edit_user_registration_path %></p>
       <br>
       <p>お気に入り</p>
       <p>自分の属性</p>

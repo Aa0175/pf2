@@ -14,15 +14,20 @@ Rails.application.routes.draw do
   # root to: 'home#index'
 
   resources :users do
-    get "personalities", :to => "users#personalities"
-    get "big_five", :to => "users#big_five"
-    post "personalities/:id", :to => "users#personalities_create"
-    post "big_five/:id", :to => "users#big_five_create"
-    get "favorite", :to => "users#favorite_users"
-    post "favorite:id", :to => "users#favorite_create"
-    get :search, on: :collection
-    get :attributes, on: :collection
+    collection do
+      get 'attributes'
+      post 'save_attributes'
+      get 'search'
+      get "personalies"
+      get "big_five"
+      post "save_personalities"
+      post "save_big_five"
+      get "favorite"
+      post "save_favorite"
+    end
   end
+    get "users/edit_attributes/:id", :to => "users#edit_attributes", as: :edit_attributes
+    patch "users/update_attributes/:id", :to => "users#update_attributes", as: :update_attributes
 
   namespace :api, {format: 'json'} do
       namespace :v1 do
@@ -40,6 +45,6 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/users/sign_out', :to => 'users/sessions#destroy'
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+    post '/users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 end

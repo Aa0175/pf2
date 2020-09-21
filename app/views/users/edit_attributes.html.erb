@@ -1,0 +1,50 @@
+<div class="ui one column stackable center aligned page grid">
+   <div class="column ten wide">
+     <div class="ui segment users_box">
+       <h1>ユーザー情報編集</h1>
+       <%= form_with url: update_attributes_path, method: "PATCH", local: true do |f| %>
+         <div class="field">
+           <%= f.label :年齢 %>
+           <%= f.number_field :age, value: @user.age %>
+         </div>
+         <div class="field">
+           <%= f.label :性別 %>
+           <%= f.collection_select(:sex, @sex, :id, :sex, selected: @user.sexes.map(&:id)) %>
+         </div>
+         <div class="field">
+           <%= f.label :身長 %>
+           <%= f.number_field :height, value: @user.height, step: "0.1" %>
+         </div>
+         <div class="field">
+           <%= f.label :体重 %>
+           <%= f.number_field :weight, value: @user.weight, step: "0.1" %>
+         </div>
+         <div class="field">
+           <%= f.label :出身 %>
+           <%= f.collection_select(:birthplace, @birthplace, :id, :birthplace, selected: @user.birthplaces.map(&:id)) %>
+         </div>
+         <div class="field">
+           <%= f.label :居住地 %>
+           <%= f.collection_select(:residence, @residence, :id, :residence, selected: @user.residences.map(&:id)) %>
+         </div>
+         <div class="field">
+           <%= f.label :職業 %>
+           <%= f.text_field :job, value: @user.job %>
+         </div>
+         <div class="field">
+           <%= f.label :同居人 %>
+           <%= f.collection_select(:housemate, @housemate, :id, :housemate, selected: @user.housemates.map(&:id)) %>
+         </div>
+         <!-- <div class="field">
+           <%= f.label :趣味 %>
+           <%= f.text_field :hibbie %>
+         </div> -->
+
+         <div class="actions">
+           <%= f.submit '更新' %>
+         </div>
+       <% end %>
+       <%= button_to "アカウント情報の編集はこちら", edit_user_registration_path, method: :get %>
+    </div>
+  </div>
+</div>
